@@ -5,120 +5,195 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Blog</title>
   <style>
-    :root {
-      color-scheme: light dark;
-      --bg: #f7f6f3;
-      --card: #ffffff;
-      --text: #21242b;
-      --muted: #6b7280;
-      --heading: #17191e;
-      --accent: #2563eb;
-      --border: #e7e5e0;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #16181d;
-        --card: #1f2229;
-        --text: #e6e7ea;
-        --muted: #a0a5b0;
-        --heading: #f4f5f7;
-        --accent: #60a5fa;
-        --border: #32353d;
-      }
-    }
-
-    * { box-sizing: border-box; }
-
-    body {
+    .markdown-body {
+      text-size-adjust: 100%;
       margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      line-height: 1.75;
-      -webkit-font-smoothing: antialiased;
+      color: #1f2328;
+      background-color: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 16px;
+      line-height: 1.5;
+      overflow-wrap: break-word;
     }
 
-    .container {
-      max-width: 760px;
+    .page {
+      max-width: 896px;
       margin: 0 auto;
-      padding: 48px 20px 96px;
+      padding: 32px 16px;
     }
 
-    article {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 40px 44px;
-      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
+    .markdown-body a {
+      background-color: transparent;
+      color: #0969da;
+      text-decoration: none;
     }
 
-    h1, h2, h3 {
-      color: var(--heading);
-      line-height: 1.3;
-      margin: 1.6em 0 0.6em;
+    .markdown-body a:hover {
+      text-decoration: underline;
     }
 
-    h1 {
-      font-size: 1.9rem;
+    .markdown-body b,
+    .markdown-body strong {
+      font-weight: 600;
+    }
+
+    .markdown-body h1,
+    .markdown-body h2,
+    .markdown-body h3,
+    .markdown-body h4,
+    .markdown-body h5,
+    .markdown-body h6 {
+      margin-top: 24px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      line-height: 1.25;
+    }
+
+    .markdown-body h1 {
+      padding-bottom: 0.3em;
+      font-size: 2em;
+      border-bottom: 1px solid #d8dee4;
+      margin: 24px 0 16px;
+    }
+
+    .markdown-body h2 {
+      padding-bottom: 0.3em;
+      font-size: 1.5em;
+      border-bottom: 1px solid #d8dee4;
+    }
+
+    .markdown-body h3 {
+      font-size: 1.25em;
+    }
+
+    .markdown-body h4 {
+      font-size: 1em;
+    }
+
+    .markdown-body h5 {
+      font-size: 0.875em;
+    }
+
+    .markdown-body h6 {
+      font-size: 0.85em;
+      color: #656d76;
+    }
+
+    .markdown-body p {
       margin-top: 0;
-      letter-spacing: -0.02em;
+      margin-bottom: 16px;
     }
 
-    h2 {
-      font-size: 1.35rem;
-      padding-bottom: 0.35em;
-      border-bottom: 1px solid var(--border);
+    .markdown-body ul,
+    .markdown-body ol {
+      margin-top: 0;
+      margin-bottom: 16px;
+      padding-left: 2em;
     }
 
-    h3 { font-size: 1.1rem; }
-
-    p { margin: 0.8em 0; }
-
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-
-    ul, ol { padding-left: 1.6em; }
-    li { margin: 0.35em 0; }
-
-    blockquote {
-      margin: 1em 0;
-      padding: 0.25em 1.2em;
-      border-left: 3px solid var(--accent);
-      color: var(--muted);
+    .markdown-body ol ol,
+    .markdown-body ul ol {
+      list-style-type: lower-roman;
     }
 
-    code {
-      font-family: "SF Mono", SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
-      background: var(--bg);
-      padding: 0.15em 0.4em;
-      border-radius: 5px;
-      font-size: 0.9em;
+    .markdown-body ol ol ol,
+    .markdown-body ol ul ol,
+    .markdown-body ul ol ol,
+    .markdown-body ul ul ol {
+      list-style-type: lower-alpha;
     }
 
-    pre {
-      background: var(--bg);
-      padding: 1em;
-      border-radius: 8px;
-      overflow-x: auto;
+    .markdown-body ol ol,
+    .markdown-body ol ul,
+    .markdown-body ul ol,
+    .markdown-body ul ul {
+      margin-top: 0;
+      margin-bottom: 0;
     }
-    pre code { background: transparent; padding: 0; }
+
+    .markdown-body li > p {
+      margin-top: 16px;
+    }
+
+    .markdown-body li + li {
+      margin-top: 0.25em;
+    }
+
+    .markdown-body blockquote {
+      padding: 0 1em;
+      color: #656d76;
+      border-left: 0.25em solid #d0d7de;
+      margin: 0 0 16px;
+    }
+
+    .markdown-body blockquote > :first-child {
+      margin-top: 0;
+    }
+
+    .markdown-body blockquote > :last-child {
+      margin-bottom: 0;
+    }
+
+    .markdown-body code,
+    .markdown-body pre,
+    .markdown-body samp {
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    }
+
+    .markdown-body code {
+      padding: 0.2em 0.4em;
+      margin: 0;
+      font-size: 85%;
+      white-space: break-spaces;
+      background-color: rgba(175, 184, 193, 0.2);
+      border-radius: 6px;
+    }
+
+    .markdown-body pre {
+      padding: 16px;
+      overflow: auto;
+      font-size: 85%;
+      line-height: 1.45;
+      background-color: #f6f8fa;
+      border-radius: 6px;
+      margin-top: 0;
+      margin-bottom: 16px;
+    }
+
+    .markdown-body pre code {
+      display: inline;
+      padding: 0;
+      margin: 0;
+      overflow: visible;
+      line-height: inherit;
+      overflow-wrap: normal;
+      background-color: transparent;
+      border: 0;
+      font-size: 100%;
+    }
+
+    .markdown-body > :first-child {
+      margin-top: 0 !important;
+    }
+
+    .markdown-body > :last-child {
+      margin-bottom: 0 !important;
+    }
 
     .error {
-      color: #dc2626;
+      color: #d1242f;
       text-align: center;
       padding: 48px 24px;
       font-weight: 600;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <article>
-      <div id="content">
-        <p>Betöltés&hellip;</p>
-      </div>
-    </article>
+  <div class="page">
+    <div id="content" class="markdown-body">
+      <p>Betöltés&hellip;</p>
+    </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
