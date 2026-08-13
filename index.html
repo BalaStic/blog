@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f7f6f3;
+      --card: #ffffff;
+      --text: #21242b;
+      --muted: #6b7280;
+      --heading: #17191e;
+      --accent: #2563eb;
+      --border: #e7e5e0;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #16181d;
+        --card: #1f2229;
+        --text: #e6e7ea;
+        --muted: #a0a5b0;
+        --heading: #f4f5f7;
+        --accent: #60a5fa;
+        --border: #32353d;
+      }
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 20px 96px;
+    }
+
+    article {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 40px 44px;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
+    }
+
+    h1, h2, h3 {
+      color: var(--heading);
+      line-height: 1.3;
+      margin: 1.6em 0 0.6em;
+    }
+
+    h1 {
+      font-size: 1.9rem;
+      margin-top: 0;
+      letter-spacing: -0.02em;
+    }
+
+    h2 {
+      font-size: 1.35rem;
+      padding-bottom: 0.35em;
+      border-bottom: 1px solid var(--border);
+    }
+
+    h3 { font-size: 1.1rem; }
+
+    p { margin: 0.8em 0; }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    ul, ol { padding-left: 1.6em; }
+    li { margin: 0.35em 0; }
+
+    blockquote {
+      margin: 1em 0;
+      padding: 0.25em 1.2em;
+      border-left: 3px solid var(--accent);
+      color: var(--muted);
+    }
+
+    code {
+      font-family: "SF Mono", SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+      background: var(--bg);
+      padding: 0.15em 0.4em;
+      border-radius: 5px;
+      font-size: 0.9em;
+    }
+
+    pre {
+      background: var(--bg);
+      padding: 1em;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+    pre code { background: transparent; padding: 0; }
+
+    .error {
+      color: #dc2626;
+      text-align: center;
+      padding: 48px 24px;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <article>
+      <div id="content">
+        <p>Betöltés&hellip;</p>
+      </div>
+    </article>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+  <script>
+    async function loadPost() {
+      const el = document.getElementById('content');
+
+      try {
+        const res = await fetch('posts/2026-07-10.md');
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const md = await res.text();
+
+        marked.setOptions({ gfm: true, breaks: false });
+        el.innerHTML = marked.parse(md);
+
+        const firstHeading = el.querySelector('h1');
+        if (firstHeading) {
+          document.title = firstHeading.textContent.trim();
+        }
+      } catch (err) {
+        el.innerHTML = '<div class="error">Nem sikerült betölteni a bejegyzést.</div>';
+        console.error('Failed to load post:', err);
+      }
+    }
+
+    loadPost();
+  </script>
+</body>
+</html>
