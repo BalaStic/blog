@@ -66,9 +66,7 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
       font-size: 14px;
       line-height: 1.4;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      overflow-wrap: break-word;
     }
 
     .sidebar a:hover {
@@ -360,7 +358,7 @@
         el.innerHTML = html;
 
         toc.innerHTML = links.map(({ id, label }) =>
-          '<li><a href="#post-' + id + '">' + escapeHtml(label) + '</a></li>'
+          '<li><a href="#post-' + id + '" title="' + escapeHtml(label) + '">' + escapeHtml(label) + '</a></li>'
         ).join('');
 
         const firstLabel = links[0].label;
